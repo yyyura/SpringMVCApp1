@@ -1,7 +1,33 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <display-name>spring-mvc-app1</display-name>
+
+    <absolute-ordering/>
+
+    <servlet>
+        <!--   I created My Dispatcher Servlet - with name "myDispatcher" and class "DispatcherServlet" from springframework -->
+        <servlet-name>myDispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <!-- path to where the Spring configuration located - next lesson with Java configuration -->
+            <!-- we will configure Spring MVC application in this file "applicationContextMVC.xml" -->
+            <param-value>/WEB-INF/applicationContextMVC.xml</param-value>
+        </init-param>
+        <!-- load this (1) First - this Dispatcher Servlet -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>myDispatcher</servlet-name>
+        <!-- any (/) URL request will go to My Dispatcher Servlet-->
+        <url-pattern>/</url-pattern>
+        <!-- and then it will go to my Spring MVC app -->
+        <!-- Dispatcher(traffic controller) Servlet(program)  will decide to which Controller redirect this Request -->
+    </servlet-mapping>
+
 </web-app>
